@@ -1,34 +1,3 @@
-# ldAout.tcl --
-#
-#	This "tclldAout" procedure in this script acts as a replacement
-#	for the "ld" command when linking an object file that will be
-#	loaded dynamically into Tcl or Tk using pseudo-static linking.
-#
-# Parameters:
-#	The arguments to the script are the command line options for
-#	an "ld" command.
-#
-# Results:
-#	The "ld" command is parsed, and the "-o" option determines the
-#	module name.  ".a" and ".o" options are accumulated.
-#	The input archives and object files are examined with the "nm"
-#	command to determine whether the modules initialization
-#	entry and safe initialization entry are present.  A trivial
-#	C function that locates the entries is composed, compiled, and
-#	its .o file placed before all others in the command; then
-#	"ld" is executed to bind the objects together.
-#
-# RCS: @(#) $Id: ldAout.tcl,v 1.5 2001/09/28 01:21:53 dgp Exp $
-#
-# Copyright (c) 1995, by General Electric Company. All rights reserved.
-#
-# See the file "license.terms" for information on usage and redistribution
-# of this file, and for a DISCLAIMER OF ALL WARRANTIES.
-#
-# This work was supported in part by the ARPA Manufacturing Automation
-# and Design Engineering (MADE) Initiative through ARPA contract
-# F33615-94-C-4400.
-
 proc tclLdAout {{cc {}} {shlib_suffix {}} {shlib_cflags none}} {
     global env
     global argv
@@ -39,7 +8,6 @@ proc tclLdAout {{cc {}} {shlib_suffix {}} {shlib_cflags none}} {
 
     # if only two parameters are supplied there is assumed that the
     # only shlib_suffix is missing. This parameter is anyway available
-    # as "info sharedlibextension" too, so there is no need to transfer
     # 3 parameters to the function tclLdAout. For compatibility, this
     # function now accepts both 2 and 3 parameters.
 
